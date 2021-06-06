@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyFirstAzureWebApp.Authentication;
 using MyFirstAzureWebApp.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace MyFirstAzureWebApp.Controllers
     public class FooController : ControllerBase
     {
         private readonly IJWTAuthenticationManager jWTAuthenticationManager;
+        private Logger log = LogManager.GetCurrentClassLogger();
 
         public FooController(IJWTAuthenticationManager jWTAuthenticationManager)
         {
@@ -23,10 +25,10 @@ namespace MyFirstAzureWebApp.Controllers
         }
 
         // GET: api/Name
-        [Authorize]
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            log.Info("Get Sydney London");
             return new string[] { "Sydney", "London" };
         }
 
@@ -41,6 +43,7 @@ namespace MyFirstAzureWebApp.Controllers
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] UserCredential userCred)
         {
+            log.Info(@"Get {0}, {1}",userCred.Username, userCred.Password);
             var token = jWTAuthenticationManager.Authenticate(userCred.Username, userCred.Password);
 
             if (token == null)
