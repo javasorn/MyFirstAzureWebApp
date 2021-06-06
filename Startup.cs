@@ -27,7 +27,6 @@ namespace MyFirstAzureWebApp
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.OperationFilter<CustomHeaderSwaggerAttribute>();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyFirstAzureWebApp", Version = "v1" });
             });
 
