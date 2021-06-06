@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyFirstAzureWebApp.Authentication;
+using MyFirstAzureWebApp.Business;
+using System;
 using System.Text;
 
 namespace MyFirstAzureWebApp
@@ -29,6 +32,17 @@ namespace MyFirstAzureWebApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyFirstAzureWebApp", Version = "v1" });
             });
+
+            // Azue BlobService
+            // see https://www.learmoreseekmore.com/2021/02/dotnet5-web-api-managing-files-using-azure-blob-storage.html
+            string connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+            services.AddScoped(_ =>
+            {
+                return new BlobServiceClient(connectionString);
+            });
+
+            services.AddScoped<IFileManagerLogic, FileManagerLogic>();
+
 
             var tokenKey = Configuration.GetValue<string>("TokenKey");
             var key = Encoding.ASCII.GetBytes(tokenKey);
