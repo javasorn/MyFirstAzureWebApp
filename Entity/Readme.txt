@@ -1,4 +1,8 @@
-﻿#Use this script to generate entity classes and config for 1 table or many tables
+﻿Entity Framework Core :
+https://docs.microsoft.com/en-us/ef/core/get-started/overview/install
+
+
+#Use this script to generate entity classes and config for 1 table or many tables
 
 Step 1: run powershell command to generate new classes, this is an example for Employees
 
