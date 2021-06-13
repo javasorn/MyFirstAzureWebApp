@@ -27,6 +27,7 @@ namespace Database.Bootstrap
                     .SqlDatabase(connectionString)
                     .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
                     .LogToConsole()
+                    .WithTransaction()
                     .Build();
 
             var result = upgrader.PerformUpgrade();

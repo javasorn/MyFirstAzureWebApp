@@ -28,6 +28,7 @@ namespace MyFirstAzureWebApp
         {
 
             services.AddControllers();
+            // AddSwaggerGen
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyFirstAzureWebApp", Version = "v1" });
@@ -40,13 +41,11 @@ namespace MyFirstAzureWebApp
             {
                 return new BlobServiceClient(connectionString);
             });
-
             services.AddScoped<IFileManagerLogic, FileManagerLogic>();
 
-
+            // JWT Authentication
             var tokenKey = Configuration.GetValue<string>("TokenKey");
             var key = Encoding.ASCII.GetBytes(tokenKey);
-
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -64,13 +63,13 @@ namespace MyFirstAzureWebApp
                     ValidateAudience = false
                 };
             });
-
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(tokenKey));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Make sure UseSwagger only in dev
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

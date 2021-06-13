@@ -6,15 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\20120526.01 - create tables.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Scripts\20120526.01 - create tables.sql" />
+    <EmbeddedResource Include="Scripts\20120607.01 - create tablel2.sql" />
+    <EmbeddedResource Include="Scripts\20120613.01 - create Employees table.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DbUp" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>
