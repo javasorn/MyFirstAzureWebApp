@@ -8,6 +8,7 @@ namespace Entity
 {
     public partial class Employee
     {
+        [NotMapped]
         public string PhotoPath2 { get; set; }
     }
 }
