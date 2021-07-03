@@ -1,0 +1,21 @@
+﻿# Note command
+>dotnet publish -c release -o app/ .
+>docker build -t myfirstazurewebapp .
+
+# Test run
+>docker run -p 8181:80 myfirstazurewebapp
+
+# Login Azure 
+>az login
+
+# Get user and password for container registry
+>az acr credential show -n <containerregistry_name>
+
+# Create tag in docker
+>docker tag myfirstazurewebapp <containerregistry_name>.azurecr.io/myfirstazurewebapp:v1
+
+# docker login
+>docker login https://<containerregistry_name>.azurecr.io -u <containerregistry_user> -p <containerregistry_password>
+
+# Push an image to registry
+>docker push <containerregistry_name>.azurecr.io/myfirstazurewebapp:v1
