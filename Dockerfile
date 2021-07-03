@@ -1,10 +1,11 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+#
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 COPY /app /app
 ENTRYPOINT ["dotnet", "MyFirstAzureWebApp.dll"]
 
+#
 #EXPOSE 80
 #EXPOSE 443
 #
@@ -23,3 +24,4 @@ ENTRYPOINT ["dotnet", "MyFirstAzureWebApp.dll"]
 #WORKDIR /app
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "MyFirstAzureWebApp.dll", "--server.urls"]
+#
