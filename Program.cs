@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace MyFirstAzureWebApp
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
+                    logging.SetMinimumLevel(LogLevel.Trace);
                 })
                 .ConfigureAppConfiguration((context, config) =>
                 {
@@ -38,18 +40,12 @@ namespace MyFirstAzureWebApp
                             var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
                             config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
                         }
-                        Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", settings["dev-uat-database-saleonmob"]);
-                        Environment.SetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING", settings["dev-uat-storage-saleonmob"]);
-                    }
-                    else
-                    {
-                        Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", settings["DatabaseConnectionString"]);
-                        Environment.SetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING", settings["BlobConnectionString"]);
                     }
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .UseNLog();
     }
 }

@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AzureWebJob\**" />
     <Compile Remove="Database.Bootstrap\**" />
+    <Content Remove="AzureWebJob\**" />
     <Content Remove="Database.Bootstrap\**" />
+    <EmbeddedResource Remove="AzureWebJob\**" />
     <EmbeddedResource Remove="Database.Bootstrap\**" />
+    <None Remove="AzureWebJob\**" />
     <None Remove="Database.Bootstrap\**" />
   </ItemGroup>
 

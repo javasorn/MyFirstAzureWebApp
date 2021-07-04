@@ -29,6 +29,20 @@ namespace MyFirstAzureWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Setup SetEnvironmentVariable
+            var env = Configuration["ASPNETCORE_ENVIRONMENT"]??"Production";
+            if (env != "Development")
+            {
+                Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", Configuration["dev-uat-database-saleonmob"]);
+                Environment.SetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING", Configuration["dev-uat-storage-saleonmob"]);
+                Environment.SetEnvironmentVariable("AZURE_SENDGRID_CONNECTION_STRING", Configuration["dev-uat-sendgrid-saleonmob"]);
+            }
+            else
+            {
+                Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", Configuration["DatabaseConnectionString"]);
+                Environment.SetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING", Configuration["BlobConnectionString"]);
+                Environment.SetEnvironmentVariable("AZURE_SENDGRID_CONNECTION_STRING", Configuration["SendgridConnectionString"]);
+            }
 
             services.AddControllers();
 

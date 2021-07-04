@@ -25,6 +25,11 @@ namespace MyFirstAzureWebApp.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation("Information : Hello, this is the WeatherForecast!");
+            _logger.LogTrace("Trace : Hello, this is the WeatherForecast!");
+            _logger.LogDebug("Debug : Hello, this is the WeatherForecast!");
+            _logger.LogError("Error : Hello, this is the WeatherForecast!");
+            _logger.LogWarning("Error : Hello, this is the WeatherForecast!");
             return weather.Forecast();
         }
 
