@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstAzureWebApp", "MyFirstAzureWebApp.csproj", "{3033FE5F-4EAE-4627-BB92-56E7E27956BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Bootstrap", "Database.Bootstrap\Database.Bootstrap.csproj", "{49629C36-A394-4B63-9ECF-A379FB5EA528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Bootstrap", "Database.Bootstrap\Database.Bootstrap.csproj", "{49629C36-A394-4B63-9ECF-A379FB5EA528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -45,7 +45,6 @@ namespace MyFirstAzureWebApp
                             var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
                             config.AddAzureKeyVault(keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
                         }
-                        //add new
                         UpdateNLogConfig(config.Build(), context.HostingEnvironment);
                     }
                 })
@@ -56,7 +55,6 @@ namespace MyFirstAzureWebApp
                 })
                 .UseNLog();
 
-        //add new
         private static void UpdateNLogConfig(IConfigurationRoot configuration, IHostEnvironment env)
         {
             Console.WriteLine("UpdateNLogConfig");

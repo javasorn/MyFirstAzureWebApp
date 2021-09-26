@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using MyFirstAzureWebApp.Authentication;
 using MyFirstAzureWebApp.Business;
 using MyFirstAzureWebApp.Business.People;
+using SendGrid.Extensions.DependencyInjection;
 using System;
 using System.Text;
 
@@ -92,6 +93,12 @@ namespace MyFirstAzureWebApp
                 };
             });
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(tokenKey));
+            // Add sendGrid
+            Console.WriteLine("SendgridConnectionString:" + Environment.GetEnvironmentVariable("AZURE_SENDGRID_CONNECTION_STRING"));            
+            services.AddSendGrid(options =>
+            {
+                options.ApiKey = Environment.GetEnvironmentVariable("AZURE_SENDGRID_CONNECTION_STRING");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
